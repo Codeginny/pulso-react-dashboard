@@ -1,0 +1,14 @@
+node_modules/
+dist/
+data/raw/
+data/.venv/
+__pycache__/
+.env
+web/storybook-static/
+web/test-results/
+web/playwright-report/
+coverage/
+*.log
+
+# Exportación para Power BI: se regenera con data/powerbi/exportar.py
+data/powerbi/csv/

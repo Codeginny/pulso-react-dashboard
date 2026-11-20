@@ -1,0 +1,27 @@
+{
+  "name": "pulso",
+  "private": true,
+  "description": "Plataforma de datos de clientes: API GraphQL, dashboard React con SSR y design system documentado en Storybook.",
+  "workspaces": [
+    "api",
+    "web"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w api & npm run dev -w web",
+    "build": "npm run build -w api && npm run build -w web",
+    "test": "npm test -w api && npm test -w web",
+    "typecheck": "npm run typecheck -w api && npm run typecheck -w web",
+    "lint": "npm run lint -w web",
+    "e2e": "npm run e2e -w web",
+    "storybook": "npm run storybook -w web",
+    "datos": "data/.venv/bin/python data/pipeline.py"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "overrides": {
+    "react-is": "^19.0.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0"
+  }
+}
