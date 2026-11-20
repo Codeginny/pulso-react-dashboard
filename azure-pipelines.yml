@@ -1,0 +1,55 @@
+# Mismo pipeline que .github/workflows/ci.yml, para Azure DevOps.
+trigger:
+  branches:
+    include: [main]
+
+pr:
+  branches:
+    include: [main]
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  npm_config_cache: $(Pipeline.Workspace)/.npm
+
+stages:
+  - stage: Calidad
+    jobs:
+      - job: lint_tests_build
+        displayName: Lint, tipos, tests y build
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '22.x'
+          - task: Cache@2
+            inputs:
+              key: 'npm | "$(Agent.OS)" | package-lock.json'
+              path: $(npm_config_cache)
+          - script: npm ci
+          - script: npm run lint
+          - script: npm run typecheck
+          - script: npm test -w api
+            displayName: Tests de la API
+          - script: npm test -w web -- --ci --coverage
+            displayName: Tests del frontend
+          - script: npm run build
+          - script: npm run build-storybook -w web
+            displayName: Build de Storybook
+          - publish: web/storybook-static
+            artifact: storybook
+
+  - stage: E2E
+    dependsOn: Calidad
+    jobs:
+      - job: playwright
+        displayName: Playwright + axe
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '22.x'
+          - script: npm ci
+          - script: npx playwright install --with-deps chromium
+          - script: npm run e2e
+            env:
+              CI: 'true'

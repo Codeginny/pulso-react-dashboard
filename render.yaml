@@ -1,0 +1,26 @@
+# Blueprint de Render: API GraphQL y servidor SSR como dos servicios web.
+services:
+  - type: web
+    name: pulso-api
+    runtime: node
+    rootDir: .
+    buildCommand: npm ci && npm run build -w api
+    startCommand: node api/dist/index.js
+    envVars:
+      - key: PULSO_DB
+        value: data/pulso.db
+      - key: NODE_VERSION
+        value: '22'
+
+  - type: web
+    name: pulso-web
+    runtime: node
+    rootDir: .
+    buildCommand: npm ci && npm run build -w web
+    startCommand: cd web && NODE_ENV=production node dist/server.js
+    envVars:
+      # URL pública de pulso-api (por ejemplo https://pulso-api.onrender.com). Se carga en el panel de Render.
+      - key: API_URL
+        sync: false
+      - key: NODE_VERSION
+        value: '22'
