@@ -1,0 +1,227 @@
+@use '../design-system/tokens/tokens' as *;
+
+.bajada {
+  margin-top: calc(var(--esp-2) * -1);
+  color: var(--color-texto-suave);
+  font-size: var(--texto-s);
+}
+
+.kpis {
+  display: grid;
+  gap: var(--esp-4);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.grillaPrincipal {
+  display: grid;
+  gap: var(--esp-4);
+
+  @media (min-width: $bp-escritorio) {
+    grid-template-columns: 1fr 260px;
+  }
+}
+
+.columna {
+  display: grid;
+  gap: var(--esp-4);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  align-content: start;
+
+  @media (min-width: $bp-escritorio) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.grillaDoble {
+  display: grid;
+  gap: var(--esp-4);
+
+  @media (min-width: $bp-escritorio) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.pie {
+  font-size: var(--texto-xs);
+  color: var(--color-texto-suave);
+}
+
+.segmentos {
+  display: grid;
+  gap: var(--esp-3);
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.segmento {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-2);
+  width: 100%;
+  height: 100%;
+  padding: var(--esp-4);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-l);
+  background: var(--color-superficie);
+  color: var(--color-texto);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--transicion);
+  @include foco;
+
+  &:hover {
+    border-color: var(--color-primario);
+  }
+
+  &[aria-pressed='true'] {
+    border-color: var(--color-primario);
+    box-shadow: inset 0 0 0 1px var(--color-primario);
+    background: var(--color-primario-suave);
+  }
+}
+
+.segmentoCabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--esp-2);
+  font-weight: var(--peso-fuerte);
+}
+
+.segmentoDato {
+  font-size: var(--texto-xl);
+  font-weight: var(--peso-fuerte);
+  font-variant-numeric: tabular-nums;
+}
+
+.segmentoTexto {
+  font-size: var(--texto-xs);
+  color: var(--color-texto-suave);
+}
+
+.barra {
+  height: 6px;
+  border-radius: var(--radio-total);
+  background: var(--color-superficie-2);
+  overflow: hidden;
+
+  span {
+    display: block;
+    height: 100%;
+    background: var(--color-primario);
+  }
+}
+
+.herramientas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--esp-3);
+  margin-bottom: var(--esp-4);
+}
+
+.busqueda {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-1);
+  flex: 1 1 220px;
+
+  label {
+    font-size: var(--texto-xs);
+    font-weight: var(--peso-medio);
+    color: var(--color-texto-suave);
+  }
+
+  input {
+    min-height: 44px;
+    padding: 0 var(--esp-3);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-m);
+    background: var(--color-superficie);
+    color: var(--color-texto);
+    @include foco;
+  }
+}
+
+.descripcionProducto {
+  max-width: 320px;
+}
+
+.resumenCohortes {
+  display: grid;
+  gap: var(--esp-4);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+// Asistente
+.chat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-4);
+  max-width: 880px;
+}
+
+.mensajes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-3);
+  margin: 0;
+  padding: 0;
+}
+
+.formulario {
+  display: flex;
+  gap: var(--esp-2);
+  position: sticky;
+  bottom: 0;
+  padding: var(--esp-3) 0;
+  background: var(--color-fondo);
+
+  input {
+    flex: 1;
+    min-width: 0;
+    min-height: 44px;
+    padding: 0 var(--esp-4);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-m);
+    background: var(--color-superficie);
+    color: var(--color-texto);
+    @include foco;
+  }
+}
+
+.tablaChat {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--texto-xs);
+  font-variant-numeric: tabular-nums;
+
+  th,
+  td {
+    padding: var(--esp-1) var(--esp-2);
+    border-bottom: 1px solid var(--color-borde);
+    text-align: left;
+  }
+
+  th {
+    color: var(--color-texto-suave);
+  }
+}
+
+.tablaChatContenedor {
+  overflow-x: auto;
+}
+
+.aviso {
+  font-size: var(--texto-xs);
+  color: var(--color-texto-suave);
+}
+
+.noEncontrada {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--esp-3);
+}

@@ -1,0 +1,213 @@
+@use '../design-system/tokens/tokens' as *;
+
+.app {
+  display: grid;
+  // minmax(0, …) evita que el menú horizontal del celular estire la columna.
+  grid-template-columns: minmax(0, 1fr);
+  min-height: 100vh;
+
+  @media (min-width: $bp-escritorio) {
+    grid-template-columns: 248px minmax(0, 1fr);
+  }
+}
+
+.saltar {
+  position: absolute;
+  left: var(--esp-4);
+  top: -100px;
+  z-index: 10;
+  padding: var(--esp-2) var(--esp-4);
+  border-radius: var(--radio-s);
+  background: var(--color-primario);
+  color: var(--color-sobre-primario);
+  font-weight: var(--peso-fuerte);
+
+  &:focus {
+    top: var(--esp-4);
+  }
+}
+
+.lateral {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-5);
+  padding: var(--esp-4);
+  border-bottom: 1px solid var(--color-borde);
+  background: var(--color-superficie);
+
+  @media (min-width: $bp-escritorio) {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    padding: var(--esp-5);
+    border-bottom: 0;
+    border-right: 1px solid var(--color-borde);
+  }
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-2);
+  font-size: var(--texto-l);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.logo {
+  color: var(--color-primario);
+}
+
+.menu {
+  display: flex;
+  gap: var(--esp-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+
+  @media (min-width: $bp-escritorio) {
+    flex-direction: column;
+  }
+}
+
+.enlace {
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 var(--esp-3);
+  border-radius: var(--radio-m);
+  color: var(--color-texto-suave);
+  font-size: var(--texto-s);
+  font-weight: var(--peso-medio);
+  text-decoration: none;
+  white-space: nowrap;
+  @include foco;
+
+  &:hover {
+    background: var(--color-superficie-2);
+    color: var(--color-texto);
+  }
+}
+
+.activo {
+  background: var(--color-primario-suave);
+  color: var(--color-primario);
+
+  &:hover {
+    background: var(--color-primario-suave);
+    color: var(--color-primario);
+  }
+}
+
+.preferencias {
+  font-size: var(--texto-s);
+
+  summary {
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 var(--esp-3);
+    border-radius: var(--radio-m);
+    color: var(--color-texto-suave);
+    font-weight: var(--peso-medio);
+    cursor: pointer;
+    @include foco;
+
+    &:hover {
+      background: var(--color-superficie-2);
+      color: var(--color-texto);
+    }
+  }
+
+  @media (min-width: $bp-escritorio) {
+    margin-top: auto;
+  }
+}
+
+.opciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-4);
+  padding: var(--esp-3) var(--esp-3) 0;
+
+  @media (min-width: $bp-escritorio) {
+    flex-direction: column;
+  }
+}
+
+.fuente {
+  display: none;
+  font-size: var(--texto-xs);
+  color: var(--color-texto-suave);
+
+  @media (min-width: $bp-escritorio) {
+    display: block;
+  }
+}
+
+.principal {
+  min-width: 0;
+}
+
+.encabezado {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--esp-4);
+  padding: var(--esp-5) var(--esp-4) var(--esp-4);
+
+  @media (min-width: $bp-tablet) {
+    padding: var(--esp-6) var(--esp-6) var(--esp-4);
+  }
+}
+
+.titulo {
+  font-size: var(--texto-xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--esp-4);
+  max-width: 100%;
+
+  > div:first-child {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+}
+
+.nota {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-1);
+  font-size: var(--texto-s);
+  min-height: 44px;
+  justify-content: flex-end;
+}
+
+.notaEtiqueta {
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-medio);
+  color: var(--color-texto-suave);
+}
+
+.contenido {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-5);
+  padding: 0 var(--esp-4) var(--esp-7);
+
+  @media (min-width: $bp-tablet) {
+    padding: 0 var(--esp-6) var(--esp-7);
+  }
+}
