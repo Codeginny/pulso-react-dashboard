@@ -1,0 +1,56 @@
+// Medidas DAX del modelo de Pulso para Power BI.
+// Tablas: dim_fecha[fecha] (marcada como tabla de fechas), hecho_mensual, dim_cliente, hecho_cohorte.
+// Relación: dim_fecha[fecha] 1 → * hecho_mensual[fecha].
+
+Ingresos = SUM ( hecho_mensual[ingresos] )
+
+Pedidos = SUM ( hecho_mensual[pedidos] )
+
+Ticket promedio = DIVIDE ( [Ingresos], [Pedidos] )
+
+Ingresos período anterior =
+CALCULATE ( [Ingresos], DATEADD ( dim_fecha[fecha], -12, MONTH ) )
+
+Variación interanual % =
+DIVIDE ( [Ingresos] - [Ingresos período anterior], [Ingresos período anterior] )
+
+Ingresos acumulados del año =
+TOTALYTD ( [Ingresos], dim_fecha[fecha] )
+
+Peso de la temporada alta % =
+DIVIDE (
+    CALCULATE ( [Ingresos], dim_fecha[temporada_alta] = TRUE () ),
+    CALCULATE ( [Ingresos], ALL ( dim_fecha[temporada_alta] ) )
+)
+
+Participación de la región % =
+DIVIDE ( [Ingresos], CALCULATE ( [Ingresos], ALL ( hecho_mensual[region] ) ) )
+
+// --- Clientes y segmentos (dim_cliente) ---
+
+Clientes = DISTINCTCOUNT ( dim_cliente[cliente_id] )
+
+Valor histórico = SUM ( dim_cliente[monetario] )
+
+Participación del segmento % =
+DIVIDE ( [Valor histórico], CALCULATE ( [Valor histórico], ALL ( dim_cliente[segmento] ) ) )
+
+Valor en riesgo =
+CALCULATE (
+    [Valor histórico],
+    dim_cliente[segmento] IN { "En riesgo", "No se pueden perder" }
+)
+
+Días promedio sin comprar = AVERAGE ( dim_cliente[recencia] )
+
+// --- Cohortes (hecho_cohorte) ---
+
+Retención % =
+VAR tamanio =
+    CALCULATE (
+        SUM ( hecho_cohorte[clientes] ),
+        hecho_cohorte[mes_desde_alta] = 0,
+        ALLEXCEPT ( hecho_cohorte, hecho_cohorte[cohorte] )
+    )
+RETURN
+    DIVIDE ( SUM ( hecho_cohorte[clientes] ), tamanio )
