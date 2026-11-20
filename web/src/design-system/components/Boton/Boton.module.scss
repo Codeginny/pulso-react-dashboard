@@ -1,0 +1,77 @@
+@use '../../tokens/tokens' as *;
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--esp-2);
+  border: 1px solid transparent;
+  border-radius: var(--radio-s);
+  font-weight: var(--peso-medio);
+  cursor: pointer;
+  transition: background var(--transicion), border-color var(--transicion), color var(--transicion);
+  @include foco;
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}
+
+// Área táctil mínima de 44 px en el tamaño estándar (WCAG 2.5.8 recomienda 24 como mínimo).
+.m {
+  min-height: 44px;
+  padding: 0 var(--esp-4);
+  font-size: var(--texto-s);
+}
+
+.s {
+  min-height: 32px;
+  padding: 0 var(--esp-3);
+  font-size: var(--texto-xs);
+}
+
+.primario {
+  background: var(--color-primario);
+  color: var(--color-sobre-primario);
+
+  &:hover:not(:disabled) {
+    background: var(--color-primario-hover);
+  }
+}
+
+.secundario {
+  background: var(--color-superficie);
+  border-color: var(--color-borde);
+  color: var(--color-texto);
+
+  &:hover:not(:disabled) {
+    border-color: var(--color-primario);
+    color: var(--color-primario);
+  }
+}
+
+.fantasma {
+  background: transparent;
+  color: var(--color-texto-suave);
+
+  &:hover:not(:disabled) {
+    background: var(--color-superficie-2);
+    color: var(--color-texto);
+  }
+}
+
+.spinner {
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: girar 0.7s linear infinite;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}

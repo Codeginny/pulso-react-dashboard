@@ -1,0 +1,40 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Introducción" />
+
+# Design system de Pulso
+
+Componentes React + SCSS para construir tableros de datos: KPIs, tablas, gráficos, filtros y un chat con el asistente de datos.
+Todo lo que ves acá es lo mismo que usa la app: no hay una copia aparte para la documentación.
+
+## Cómo está organizado
+
+| Capa | Qué tiene | Dónde |
+| --- | --- | --- |
+| **Tokens primitivos** | La paleta cruda (`verde-700`, `ambar-400`…). Sólo se usan dentro de los tokens. | `tokens/_tokens.scss` |
+| **Tokens semánticos** | Lo que significa cada color (`--color-texto`, `--color-peligro`, `--grafico-1`). Cambian con el tema. | `tokens/_tokens.scss` |
+| **Componentes base** | Boton, Etiqueta, Selector, ControlSegmentado, Tarjeta. | `components/` |
+| **Componentes de datos** | TarjetaKpi, TablaDatos, Paginacion, Graficos, MapaCalor. | `components/` |
+| **Patrones** | Estados (carga, vacío, error) y MensajeChat. | `components/` |
+
+**Por qué tres capas de tokens:** el modo oscuro se resuelve redefiniendo sólo la capa semántica. Ningún componente sabe en qué tema está,
+y agregar un tema nuevo (por ejemplo, alto contraste) no obliga a tocar componentes.
+
+**Por qué SCSS Modules y no utilidades:** las clases quedan encapsuladas por componente, los estilos se leen junto al componente y
+los tokens se consumen como variables CSS, así funcionan igual en SSR, en el navegador y en Storybook.
+
+## Reglas de accesibilidad (WCAG 2.2 AA)
+
+- **Contraste:** texto normal ≥ 4,5:1 y elementos de interfaz ≥ 3:1 en los dos temas. El verde primario es `#0f766e` en claro (5,5:1 sobre blanco) y `#2dd4bf` en oscuro.
+- **Foco visible:** todo lo interactivo usa el mixin `foco` (contorno ámbar de 2 px), que no se confunde con el color de marca.
+- **El color nunca es la única señal:** las variaciones llevan flecha y texto; las etiquetas de segmento dicen su nombre; el mapa de calor escribe el número en cada celda.
+- **Gráficos:** cada gráfico tiene una tabla equivalente oculta a la vista para lectores de pantalla.
+- **Teclado:** el control segmentado sigue el patrón `radiogroup` (Tab entra, flechas cambian); las tablas usan `button` en los encabezados ordenables y `aria-sort`.
+- **Área táctil:** 44 px de alto en botones, selectores y campos.
+- **Movimiento:** se respeta `prefers-reduced-motion`.
+
+El panel **Accessibility** de cada historia corre axe-core. En CI, una violación hace fallar la build.
+
+## Temas y densidad
+
+Usá los botones **Tema** y **Densidad** de la barra superior para ver cada componente en claro u oscuro y con tablas cómodas o compactas.

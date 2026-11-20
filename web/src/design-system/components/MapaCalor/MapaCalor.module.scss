@@ -1,0 +1,79 @@
+@use '../../tokens/tokens' as *;
+
+.contenedor {
+  overflow-x: auto;
+  border-radius: var(--radio-m);
+  @include foco;
+}
+
+.tabla {
+  border-collapse: separate;
+  border-spacing: 3px;
+  font-size: var(--texto-xs);
+  font-variant-numeric: tabular-nums;
+  min-width: 100%;
+
+  th {
+    padding: var(--esp-1) var(--esp-2);
+    font-weight: var(--peso-medio);
+    color: var(--color-texto-suave);
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  thead th {
+    text-align: center;
+  }
+}
+
+.total {
+  padding: 0 var(--esp-2);
+  color: var(--color-texto-suave);
+  text-align: right;
+}
+
+.celda {
+  min-width: 52px;
+  height: 36px;
+  border-radius: var(--radio-s);
+  text-align: center;
+}
+
+// Niveles discretos en lugar de transparencias: con alfa, los tonos intermedios
+// no garantizan contraste ni con texto claro ni con texto oscuro.
+@for $n from 1 through 5 {
+  .nivel#{$n} {
+    background: var(--calor-#{$n});
+    @if $n >= 4 {
+      color: var(--calor-texto-alto);
+      font-weight: var(--peso-fuerte);
+    } @else {
+      color: var(--calor-texto-bajo);
+    }
+  }
+}
+
+.vacia {
+  background: transparent;
+}
+
+.escala {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-2);
+  margin-top: var(--esp-3);
+  font-size: var(--texto-xs);
+  color: var(--color-texto-suave);
+}
+
+.muestras {
+  display: flex;
+  gap: 2px;
+
+  span {
+    width: 20px;
+    height: 12px;
+    border-radius: 3px;
+    border: 1px solid var(--color-borde);
+  }
+}

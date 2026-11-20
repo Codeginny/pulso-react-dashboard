@@ -1,0 +1,30 @@
+@use '../../tokens/tokens' as *;
+
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-1);
+}
+
+.etiqueta {
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-medio);
+  color: var(--color-texto-suave);
+}
+
+.select {
+  min-height: 44px;
+  padding: 0 var(--esp-6) 0 var(--esp-3);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-m);
+  background-color: var(--color-superficie);
+  color: var(--color-texto);
+  font-size: var(--texto-s);
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%;
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  @include foco;
+}

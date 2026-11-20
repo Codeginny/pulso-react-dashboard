@@ -1,0 +1,20 @@
+.paginacion {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--esp-3);
+  margin-top: var(--esp-4);
+  font-size: var(--texto-s);
+  color: var(--color-texto-suave);
+}
+
+.botones {
+  display: flex;
+  align-items: center;
+  gap: var(--esp-2);
+}
+
+.pagina {
+  white-space: nowrap;
+}

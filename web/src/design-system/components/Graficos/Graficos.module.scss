@@ -1,0 +1,35 @@
+.figura {
+  margin: 0;
+  min-width: 0;
+}
+
+.lienzo {
+  width: 100%;
+  font-variant-numeric: tabular-nums;
+
+  // Recharts dibuja un rectángulo de foco por defecto que no respeta los tokens.
+  :global(.recharts-wrapper) *:focus {
+    outline: none;
+  }
+}
+
+.leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-4);
+  margin-top: var(--esp-3);
+  font-size: var(--texto-xs);
+  color: var(--color-texto-suave);
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-2);
+}
+
+.muestra {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}

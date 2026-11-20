@@ -1,0 +1,57 @@
+.esqueletos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-2);
+}
+
+.esqueleto {
+  display: block;
+  border-radius: var(--radio-s);
+  background: linear-gradient(90deg, var(--color-superficie-2) 25%, var(--color-borde) 50%, var(--color-superficie-2) 75%);
+  background-size: 200% 100%;
+  animation: brillo 1.4s ease-in-out infinite;
+}
+
+@keyframes brillo {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.vacio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--esp-2);
+  padding: var(--esp-6) var(--esp-4);
+  text-align: center;
+}
+
+.tituloVacio {
+  font-weight: var(--peso-fuerte);
+}
+
+.texto {
+  font-size: var(--texto-s);
+  color: var(--color-texto-suave);
+}
+
+.alerta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--esp-4);
+  padding: var(--esp-4);
+  border: 1px solid var(--color-peligro);
+  border-left-width: 4px;
+  border-radius: var(--radio-m);
+  background: var(--color-superficie);
+}
+
+.tituloAlerta {
+  font-weight: var(--peso-fuerte);
+  color: var(--color-peligro);
+}

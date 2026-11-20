@@ -1,0 +1,88 @@
+@use '../../tokens/tokens' as *;
+
+.mensaje {
+  display: flex;
+  list-style: none;
+}
+
+.usuario {
+  justify-content: flex-end;
+
+  .burbuja {
+    background: var(--color-primario);
+    color: var(--color-sobre-primario);
+    border-bottom-right-radius: var(--radio-s);
+  }
+}
+
+.asistente {
+  justify-content: flex-start;
+
+  .burbuja {
+    background: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-bottom-left-radius: var(--radio-s);
+  }
+}
+
+.burbuja {
+  max-width: min(640px, 92%);
+  padding: var(--esp-3) var(--esp-4);
+  border-radius: var(--radio-l);
+  font-size: var(--texto-s);
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-3);
+  min-width: 0;
+}
+
+.detalle {
+  font-size: var(--texto-xs);
+  color: var(--color-texto-suave);
+
+  summary {
+    cursor: pointer;
+    border-radius: var(--radio-s);
+    @include foco;
+  }
+
+  code {
+    display: block;
+    margin-top: var(--esp-2);
+    padding: var(--esp-2);
+    border-radius: var(--radio-s);
+    background: var(--color-superficie-2);
+    overflow-wrap: anywhere;
+  }
+}
+
+.sugerencias {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sugerencia {
+  min-height: 36px;
+  padding: 0 var(--esp-3);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-total);
+  background: var(--color-superficie);
+  color: var(--color-texto);
+  font-size: var(--texto-s);
+  cursor: pointer;
+  @include foco;
+
+  &:hover:not(:disabled) {
+    border-color: var(--color-primario);
+    color: var(--color-primario);
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}

@@ -1,0 +1,53 @@
+.kpi {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-1);
+  padding: var(--esp-4) var(--esp-5);
+  background: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-l);
+  min-width: 0;
+}
+
+.destacada {
+  border-color: var(--color-primario);
+  box-shadow: inset 4px 0 0 var(--color-primario);
+}
+
+.etiqueta {
+  font-size: var(--texto-s);
+  font-weight: var(--peso-medio);
+  color: var(--color-texto-suave);
+}
+
+.valor {
+  font-size: var(--texto-xl);
+  font-weight: var(--peso-fuerte);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.pie {
+  font-size: var(--texto-xs);
+}
+
+.variacion {
+  display: inline-flex;
+  gap: 2px;
+  font-weight: var(--peso-fuerte);
+  font-variant-numeric: tabular-nums;
+}
+
+.buena {
+  color: var(--color-exito);
+}
+
+.mala {
+  color: var(--color-peligro);
+}
+
+.neutra,
+.comparacion {
+  color: var(--color-texto-suave);
+}

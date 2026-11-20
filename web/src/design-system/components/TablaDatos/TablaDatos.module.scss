@@ -1,0 +1,108 @@
+@use '../../tokens/tokens' as *;
+
+.contenedor {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--radio-s);
+  @include foco;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--texto-s);
+  font-variant-numeric: tabular-nums;
+  transition: opacity var(--transicion);
+
+  th,
+  td {
+    padding: var(--celda-padding);
+    text-align: left;
+    border-bottom: 1px solid var(--color-borde);
+  }
+
+  th {
+    font-size: var(--texto-xs);
+    font-weight: var(--peso-fuerte);
+    color: var(--color-texto-suave);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+
+  tbody tr:hover {
+    background: var(--color-superficie-2);
+  }
+}
+
+.cargando {
+  opacity: 0.55;
+}
+
+.derecha {
+  text-align: right !important;
+}
+
+.ordenar {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-1);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-transform: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+  @include foco;
+}
+
+.flecha {
+  opacity: 0.35;
+}
+
+.flechaActiva {
+  color: var(--color-primario);
+}
+
+.vacio {
+  padding: var(--esp-6) !important;
+  text-align: center !important;
+  color: var(--color-texto-suave);
+}
+
+// En celular cada fila es una tarjeta: el encabezado de columna va al lado del valor.
+@media (max-width: #{$bp-tablet - 1px}) {
+  .tabla {
+    thead {
+      @include solo-lectores;
+    }
+
+    tr {
+      display: block;
+      padding: var(--esp-3) 0;
+      border-bottom: 1px solid var(--color-borde);
+    }
+
+    td {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--esp-4);
+      padding: var(--esp-1) 0;
+      border: 0;
+      text-align: right;
+
+      &::before {
+        content: attr(data-titulo);
+        color: var(--color-texto-suave);
+        font-size: var(--texto-xs);
+        text-align: left;
+      }
+    }
+
+    .vacio::before {
+      content: none;
+    }
+  }
+}

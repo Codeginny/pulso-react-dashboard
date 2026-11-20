@@ -1,0 +1,32 @@
+.etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--esp-1);
+  padding: 2px var(--esp-2);
+  border-radius: var(--radio-total);
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-medio);
+  white-space: nowrap;
+  border: 1px solid currentColor;
+}
+
+// El color nunca es la única señal: el texto de la etiqueta siempre dice lo mismo.
+.neutro {
+  color: var(--color-texto-suave);
+}
+
+.primario {
+  color: var(--color-primario);
+}
+
+.exito {
+  color: var(--color-exito);
+}
+
+.peligro {
+  color: var(--color-peligro);
+}
+
+.acento {
+  color: var(--color-acento);
+}

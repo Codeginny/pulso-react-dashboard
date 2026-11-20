@@ -1,0 +1,47 @@
+@use '../../tokens/tokens' as *;
+
+.contenedor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--esp-1);
+}
+
+.etiqueta {
+  font-size: var(--texto-xs);
+  font-weight: var(--peso-medio);
+  color: var(--color-texto-suave);
+}
+
+.grupo {
+  display: inline-flex;
+  padding: 3px;
+  gap: 2px;
+  background: var(--color-superficie-2);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-m);
+}
+
+.opcion {
+  min-height: 36px;
+  padding: 0 var(--esp-3);
+  border: 0;
+  border-radius: calc(var(--radio-m) - 3px);
+  background: transparent;
+  color: var(--color-texto-suave);
+  font-size: var(--texto-s);
+  font-weight: var(--peso-medio);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background var(--transicion), color var(--transicion);
+  @include foco;
+
+  &:hover {
+    color: var(--color-texto);
+  }
+}
+
+.activa {
+  background: var(--color-superficie);
+  color: var(--color-primario);
+  box-shadow: var(--sombra);
+}

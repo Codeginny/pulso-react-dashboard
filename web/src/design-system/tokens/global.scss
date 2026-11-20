@@ -1,0 +1,67 @@
+@use 'tokens' as *;
+
+:root {
+  @include tokens-fijos;
+  @include tema-claro;
+}
+
+// Sin preferencia guardada, sigue al sistema operativo.
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema='claro']) {
+    @include tema-oscuro;
+  }
+}
+
+:root[data-tema='oscuro'] {
+  @include tema-oscuro;
+}
+
+:root[data-densidad='compacta'] {
+  @include densidad-compacta;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fuente);
+  font-size: var(--texto-m);
+  line-height: 1.5;
+  color: var(--color-texto);
+  background: var(--color-fondo);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--color-primario);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.solo-lectores {
+  @include solo-lectores;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
