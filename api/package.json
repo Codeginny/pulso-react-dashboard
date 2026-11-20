@@ -1,0 +1,28 @@
+{
+  "name": "@pulso/api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/index.js",
+    "test": "jest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@apollo/server": "^5.5.2",
+    "better-sqlite3": "^13.2.0",
+    "graphql": "^16.15.0"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.16.22",
+    "@swc/jest": "^0.2.39",
+    "@types/better-sqlite3": "^9.6.0",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^26.6.6",
+    "jest": "^30.5.2",
+    "tsx": "^4.23.15",
+    "typescript": "~5.9"
+  }
+}
